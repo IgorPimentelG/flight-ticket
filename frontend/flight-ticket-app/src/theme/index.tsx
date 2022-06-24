@@ -16,7 +16,8 @@ const Theme: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 			background: {
 				primary: '#1D1D1F',
-				secondary: '#313133'
+				secondary: '#313133',
+				tertiary: '#51535E'
 			}
 		}
 	};

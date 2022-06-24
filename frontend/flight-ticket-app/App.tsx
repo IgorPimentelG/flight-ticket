@@ -1,12 +1,12 @@
 import 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
 import Theme from './src/theme';
 import Routes from '@routes';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
 	return (
 		<Theme>
-			<StatusBar style='dark'/>
+			<StatusBar style='light'/>
 			<Routes/>
 		</Theme>
 	);

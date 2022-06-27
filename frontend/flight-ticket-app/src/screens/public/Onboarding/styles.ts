@@ -5,7 +5,6 @@ export const RootContainer = styled.SafeAreaView`
   padding: 30px;
   align-items: center;
   justify-content: space-between;
-  background-color: ${({theme}) => theme.colors.background.primary};
 `;
 
 export const Header = styled.View`

@@ -61,7 +61,7 @@ const OnboardingScreen = ({ navigation }: OnboardingProps) => {
 
 			<Footer>
 				<Indicator total={TOTAL_INDICATOR} selected={indicator + 1}/>
-				<Button message='Next' onPress={changeIndicator}/>
+				<Button message={(indicator + 1) < TOTAL_INDICATOR ? 'Next' : 'Get Started'} onPress={changeIndicator}/>
 			</Footer>
 		</RootContainer>
 	);

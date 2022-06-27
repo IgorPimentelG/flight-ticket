@@ -11,7 +11,10 @@ const PublicRoutes = () => {
 		<NavigationContainer>
 			<Stack.Navigator
 				initialRouteName='Splash'
-				screenOptions={{ headerShown: false }}
+				screenOptions={{
+					headerShown: false,
+					contentStyle: { backgroundColor: '#1D1D1F' }
+				}}
 			>
 				<Stack.Screen name='Splash' component={SplashScreen}/>
 				<Stack.Screen name='Onboarding' component={OnboardingScreen}/>

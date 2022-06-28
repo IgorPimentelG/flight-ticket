@@ -9,7 +9,7 @@ const OutlineButton: React.FC<{
 
 	const icons = {
 		google: require('../../../../assets/icons/google.png'),
-		apple: require('../../../../assets/icons/apple.png')
+		twitter: require('../../../../assets/icons/twitter.png')
 	};
 
 	return(

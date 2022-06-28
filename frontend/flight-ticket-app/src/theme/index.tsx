@@ -18,6 +18,10 @@ const Theme: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 				primary: '#1D1D1F',
 				secondary: '#313133',
 				tertiary: '#51535E'
+			},
+
+			error: {
+				primary: '#990918'
 			}
 		}
 	};

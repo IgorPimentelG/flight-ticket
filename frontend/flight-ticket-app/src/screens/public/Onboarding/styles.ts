@@ -15,7 +15,7 @@ export const Header = styled.View`
 
 export const Main = styled.View`
   align-items: center;
-  width: 100%;
+  justify-content: center;
 `;
 
 export const Footer = styled.View`

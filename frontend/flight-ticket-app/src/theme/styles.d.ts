@@ -18,6 +18,10 @@ declare module 'styled-components' {
         secondary: string;
         tertiary: string;
       }
+
+      error: {
+        primary: string;
+      }
     }
   }
 }

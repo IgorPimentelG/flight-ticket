@@ -1,15 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Container, Field, Label, RootContainer } from './styles';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { Control, useController } from 'react-hook-form';
 
 const Input: React.FC<{
+  name: string;
   label: string;
   attributes: object;
   isSecureTextEntry?: boolean;
-}> = ({ label, attributes, isSecureTextEntry }) => {
+  hasError: boolean;
+  control: Control<any>;
+}> = ({ name, label, attributes, isSecureTextEntry, hasError, control}) => {
 
 	const [showText, setShowText] = useState(false);
+	const { field } = useController({ control, name });
 
 	function changeDisplayText() {
 		setShowText((currentState) => !currentState);
@@ -18,12 +24,15 @@ const Input: React.FC<{
 	return(
 		<RootContainer>
 			<Label>{label}</Label>
-			<Container>
+			<Container hasError={hasError}>
 				<Field
 					{...attributes}
+					value={field.value}
+					onChangeText={field.onChange}
+					hasError={hasError}
 					placeholderTextColor='#8C8A93'
 					autoCapitalize='none'
-					secureTextEntry={!showText}
+					secureTextEntry={!showText && isSecureTextEntry}
 				/>
 
 				{ isSecureTextEntry && (

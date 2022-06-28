@@ -1,8 +1,14 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Button, IconButton, Input, OutlineButton } from '@components/ui';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { SignInSchema } from '@shared/schemas';
+import { ModalWarning } from '@components/layout';
 import { SocialIcon } from '@shared/model/enum/icon';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Credentails } from '@shared/model/types/user';
 import { SignInProps } from '@shared/model/types/navigation';
-import { TouchableOpacity } from 'react-native';
+import { Button, IconButton, Input, OutlineButton } from '@components/ui';
+import { TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import {
 	Header,
 	ScreenTitle,
@@ -19,50 +25,104 @@ import {
 
 const SignInScreen = ({ navigation }: SignInProps) => {
 
+	const [error, setError] = useState({ show: false, message: '' });
+
+	const { control, handleSubmit, formState: { errors } } = useForm<Credentails>({
+		resolver: yupResolver(SignInSchema)
+	});
+
+	useEffect(() => {
+		if (errors.email || errors.password) {
+			let message = '';
+
+			if (errors.email && errors.password) {
+				message = `${errors.email.message}\n${errors.password.message}`;
+			} else if (errors.email) {
+				message = `${errors.email.message}`;
+			} else if (errors.password) {
+				message = `${errors.password.message}`;
+			}
+
+			setError({ show: true, message});
+		}
+	}, [errors]);
+
 	function goToSignUp() {
-		navigation.push('SignUp');
+		navigation.navigate('SignUp');
+	}
+
+	function goBack() {
+		navigation.navigate('Onboarding');
+	}
+
+	function onSubmit(data: Credentails) {
+
+	}
+
+	function clearError() {
+		setError({ show: false, message: '' });
 	}
 
 	return(
-		<RootContainer>
-			<Header>
-				<IconButton onPress={() => {}}/>
-				<ScreenTitle>Login</ScreenTitle>
-			</Header>
+		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+			<RootContainer>
 
-			<Main>
-				<Title>Welcome{'\n'}Back!</Title>
-
-				<Input label='Your Email' attributes={{ placeholder: 'Enter your email' }}/>
-				<Input
-					isSecureTextEntry
-					label='Password'
-					attributes={{ placeholder: 'Enter your password' }}
+				<ModalWarning
+					isVisible={error.show}
+					title='Ooops!'
+					label={error.message}
+					onClose={clearError}
 				/>
-			</Main>
 
-			<TouchableOpacity>
-				<Link>Forgot Password?</Link>
-			</TouchableOpacity>
+				<Header>
+					<IconButton onPress={goBack}/>
+					<ScreenTitle>Login</ScreenTitle>
+				</Header>
 
-			<Button message='Login' onPress={() => {}}/>
+				<Main>
+					<Title>Welcome{'\n'}Back!</Title>
 
-			<ContainerDivider>
-				<Line/>
-				<Label>or</Label>
-				<Line/>
-			</ContainerDivider>
+					<Input
+						label='Your Email'
+						name='email'
+						attributes={{ placeholder: 'Enter your email' }}
+						control={control}
+						hasError={!!errors.email}
+					/>
 
-			<OutlineButton label='Sign in with Google' icon={SocialIcon.GOOGLE}/>
-			<OutlineButton label='Sign in with Apple' icon={SocialIcon.APPLE}/>
+					<Input
+						label='Password'
+						name='password'
+						control={control}
+						attributes={{ placeholder: 'Enter your password' }}
+						hasError={!!errors.password}
+						isSecureTextEntry
+					/>
+				</Main>
 
-			<Footer>
-				<Label>Already have an account?</Label>
-				<TouchableOpacity onPress={goToSignUp}>
-					<OutlineLink>Sign up</OutlineLink>
+				<TouchableOpacity>
+					<Link>Forgot Password?</Link>
 				</TouchableOpacity>
-			</Footer>
-		</RootContainer>
+
+				<Button message='Login' onPress={handleSubmit(onSubmit)}/>
+
+				<ContainerDivider>
+					<Line/>
+					<Label>or</Label>
+					<Line/>
+				</ContainerDivider>
+
+				<OutlineButton label='Sign in with Google' icon={SocialIcon.GOOGLE}/>
+				<OutlineButton label='Sign in with Twitter' icon={SocialIcon.TWITTER}/>
+
+				<Footer>
+					<Label>Already have an account?</Label>
+					<TouchableOpacity onPress={goToSignUp}>
+						<OutlineLink>Sign up</OutlineLink>
+					</TouchableOpacity>
+				</Footer>
+			</RootContainer>
+		</TouchableWithoutFeedback>
 	);
 };
 

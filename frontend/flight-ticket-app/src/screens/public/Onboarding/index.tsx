@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, FlatList } from 'react-native';
 import { Button, Indicator } from '@components/ui';
 import { OnboardingProps } from '@shared/model/types/navigation';
 import {

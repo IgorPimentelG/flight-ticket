@@ -55,8 +55,13 @@ const SignInScreen = ({ navigation }: SignInProps) => {
 		navigation.navigate('Onboarding');
 	}
 
-	function onSubmit(data: Credentails) {
-
+	async function onSubmit(data: Credentails) {
+		console.log(data);
+		try {
+			console.log('response');
+		} catch {
+			console.log('error');
+		}
 	}
 
 	function clearError() {

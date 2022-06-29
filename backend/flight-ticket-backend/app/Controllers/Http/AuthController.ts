@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import AuthenticateValidator from 'App/Validators/AuthenticateValidator'
-import NewUserValidator from 'App/Validators/NewUserValidator';
+import NewUserValidator from 'App/Validators/NewUserValidator'
 
 export default class AuthController {
   public async authenticate({ auth, request, response }: HttpContextContract) {
@@ -17,6 +17,14 @@ export default class AuthController {
     } catch {
       return response.unauthorized({ message: 'Invalid Credentails!'})
     }
+  }
+
+  public async authenticateWithGoogle({ ally }: HttpContextContract) {
+    return ally.use('google').redirect();
+  }
+
+  public async authenticateWithTwitter({ ally }: HttpContextContract) {
+    return ally.use('twitter').redirect();
   }
 
   public async store({ request, response }: HttpContextContract) {

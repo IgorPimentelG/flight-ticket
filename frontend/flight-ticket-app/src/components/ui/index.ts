@@ -3,11 +3,13 @@ import Indicator from './Indicator';
 import IconButton from './IconButton';
 import Input from './Input';
 import OutlineButton from './OutlineButton';
+import TabBarButton from './TabBarButton';
 
 export {
 	Input,
 	Button,
 	Indicator,
 	IconButton,
-	OutlineButton
+	OutlineButton,
+	TabBarButton
 };

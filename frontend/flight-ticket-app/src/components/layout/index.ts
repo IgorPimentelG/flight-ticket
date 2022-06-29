@@ -1,5 +1,11 @@
-import ModalWarning from './ModalWarning';
+import Dialog from './Dialog';
+import Search from './Search';
+import CardFlight from './CardFlight';
+import CardIconMenu from './CardIconMenu';
 
 export {
-	ModalWarning
+	Dialog,
+	Search,
+	CardFlight,
+	CardIconMenu
 };

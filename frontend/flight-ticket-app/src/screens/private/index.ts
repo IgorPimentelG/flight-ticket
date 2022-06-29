@@ -4,6 +4,7 @@ import FlightsScreen from './Flights';
 import HomeScreen from './Home';
 import ProfileScreen from './Profile';
 import TripsScreen from './Trips';
+import SettingsScreen from './Settings';
 
 export {
 	ChooseSeatsScreen,
@@ -11,5 +12,6 @@ export {
 	FlightsScreen,
 	HomeScreen,
 	ProfileScreen,
-	TripsScreen
+	TripsScreen,
+	SettingsScreen
 };

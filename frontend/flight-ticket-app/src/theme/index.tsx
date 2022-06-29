@@ -7,7 +7,8 @@ const Theme: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 			text: {
 				primary: '#FFFFFF',
 				secondary: '#A5A8B0',
-				tertiary: '#000000'
+				tertiary: '#000000',
+				quaternary: '#8C8A93'
 			},
 
 			main: {
@@ -22,6 +23,10 @@ const Theme: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 			error: {
 				primary: '#990918'
+			},
+
+			icon: {
+				primary: '#7A7D8A'
 			}
 		}
 	};

@@ -1,7 +1,7 @@
 import { Modal } from 'react-native';
 import { Container, RootContainer, Title, Label, Button, LabelButton } from './styles';
 
-const ModalWarning: React.FC<{
+const Dialog: React.FC<{
   title: string;
   label: string;
   isVisible: boolean;
@@ -23,4 +23,4 @@ const ModalWarning: React.FC<{
 	);
 };
 
-export default ModalWarning;
+export default Dialog;

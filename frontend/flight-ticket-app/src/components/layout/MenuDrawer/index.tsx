@@ -1,12 +1,17 @@
 import { image } from '@assets/icons/varied';
 import { SvgXml } from 'react-native-svg';
-import { SimpleLineIcons } from '@expo/vector-icons';
-import { ContainerImage, LabelButton, LabelEmail, LabelName, LogoutButton, Options, RootContainer } from './styles';
+import {
+	ContainerImage,
+	LabelEmail,
+	LabelName,
+	RootContainer
+} from './styles';
 import {
 	DrawerItemList,
 	DrawerContentScrollView,
 	DrawerContentComponentProps
 } from '@react-navigation/drawer';
+import { LogoutButton } from '@components/ui';
 
 const MenuDrawer = (props: DrawerContentComponentProps) => {
 	return(
@@ -22,10 +27,7 @@ const MenuDrawer = (props: DrawerContentComponentProps) => {
 
 				<DrawerItemList {...props}/>
 
-				<LogoutButton>
-					<SimpleLineIcons name='logout' color='#FF6363' size={20}/>
-					<LabelButton>Logout</LabelButton>
-				</LogoutButton>
+				<LogoutButton/>
 
 			</DrawerContentScrollView>
 		</RootContainer>

@@ -1,14 +1,15 @@
 import { useTheme } from 'styled-components';
-import { TabBarButton } from '@components/ui';
+import { AntDesign } from '@expo/vector-icons';
 import { MenuIcon } from '@shared/model/enum/icon';
 import { Image, TouchableOpacity } from 'react-native';
+import { DrawerActions } from '@react-navigation/native';
+import { IconButton, TabBarButton } from '@components/ui';
+import { CardIconMenu, MenuDrawer } from '@components/layout';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { PrivateStackParamList } from '@shared/model/types/navigation';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { DrawerActions } from '@react-navigation/native';
-import MenuDrawer from '@components/layout/MenuDrawer';
-import { CardIconMenu } from '@components/layout';
-import { AntDesign } from '@expo/vector-icons';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
 	HomeScreen,
 	TripsScreen,
@@ -22,8 +23,34 @@ const PrivateRoutes = () => {
 	const theme = useTheme();
 	const Tab = createBottomTabNavigator();
 	const Drawer = createDrawerNavigator();
+	const Stack = createNativeStackNavigator<PrivateStackParamList>();
 
-	function tabBarNavigation() {
+	function StackNavigation () {
+		return(
+			<Stack.Navigator
+				screenOptions={({ navigation }) => ({
+					headerTintColor: '#FFF',
+					contentStyle: { backgroundColor: theme.colors.background.primary },
+					headerStyle: { backgroundColor: theme.colors.background.primary },
+					headerLeft: () => (
+						<IconButton onPress={() => navigation.goBack()}/>
+					)
+				})}
+			>
+				<Stack.Screen
+					name='Profile'
+					component={ProfileScreen}
+				/>
+
+				<Stack.Screen
+					name='Settings'
+					component={SettingsScreen}
+				/>
+			</Stack.Navigator>
+		);
+	}
+
+	function TabBarNavigation() {
 		return(
 			<Tab.Navigator
 				sceneContainerStyle={{ backgroundColor: theme.colors.background.primary }}
@@ -41,12 +68,13 @@ const PrivateRoutes = () => {
 					),
 					headerStyle: {
 						backgroundColor: theme.colors.background.primary,
-						shadowColor: 'transparent'
+						shadowColor: 'transparent',
+						height: 100
 					},
 					headerLeftContainerStyle: {
-						paddingTop: 20,
 						paddingLeft: 20,
 						paddingRight: 20,
+						height: 80
 					},
 					tabBarStyle: {
 						backgroundColor: '#3D3C3F',
@@ -92,12 +120,13 @@ const PrivateRoutes = () => {
 
 				<Tab.Screen
 					name='Profile'
-					component={ProfileScreen}
+					component={StackNavigation}
 					options={{
+						headerShown: false,
 						headerTitle: 'Profile',
 						tabBarIcon: ({ focused }) => (
 							<TabBarButton label='profile' icon={MenuIcon.USER} focused={focused}/>
-						),
+						)
 					}}
 				/>
 			</Tab.Navigator>
@@ -115,23 +144,12 @@ const PrivateRoutes = () => {
 			>
 				<Drawer.Screen
 					name='TabMenu'
-					component={tabBarNavigation}
+					component={TabBarNavigation}
 					options={{
 						title: 'Home',
 						drawerIcon: () => (
 							<CardIconMenu>
 								<AntDesign name='home' color={theme.colors.main.primary} size={20}/>
-							</CardIconMenu>
-						)
-					}}
-				/>
-				<Drawer.Screen
-					name='Settings'
-					component={SettingsScreen}
-					options={{
-						drawerIcon: () => (
-							<CardIconMenu>
-								<AntDesign name='setting' color={theme.colors.main.primary} size={20}/>
 							</CardIconMenu>
 						)
 					}}

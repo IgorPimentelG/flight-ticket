@@ -9,3 +9,18 @@ export enum MenuIcon {
   CALENDAR = 'calendar',
   USER = 'user'
 }
+
+export enum OutlineIcon {
+  SETTING = 'setting',
+  USER = 'user',
+  KEY = 'key',
+  CAMERA = 'camera',
+  LIKE = 'like',
+  TRIP = 'trip',
+  LIGHTNING = 'lightning',
+  WARNING = 'warning',
+  COLOR = 'color',
+  TRANSLATE = 'translate',
+  DOWNLOAD = 'download',
+  TYPOGRAPHY = 'typography'
+}

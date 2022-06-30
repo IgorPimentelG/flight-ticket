@@ -27,17 +27,3 @@ export const ContainerImage = styled.View`
   border-radius: 10px;
   background-color: #C4C4C4;
 `;
-
-export const LogoutButton = styled.TouchableOpacity`
-  padding: 10px;
-  flex-direction: row;
-  align-items: center;
-`;
-
-export const LabelButton = styled.Text`
-  color: #FF6363;
-  font-size: 16px;
-  margin-left: 15px;
-`;
-
-export const Options = styled.View``;

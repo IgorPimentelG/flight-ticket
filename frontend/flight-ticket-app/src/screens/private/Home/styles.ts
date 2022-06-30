@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const RootContainer = styled.View`
+export const RootContainer = styled.SafeAreaView`
   flex: 1;
   padding: 20px;
 `;
@@ -19,12 +19,14 @@ export const Title = styled.Text`
 
 export const SubTitle = styled.Text`
   font-size: 20px;
+  margin: 15px 0;
   font-weight: bold;
   color: ${({theme}) => theme.colors.text.primary};
 `;
 
 export const Label = styled.Text`
   font-size: 14px;
+  margin: 15px 0;
   color: ${({theme}) => theme.colors.text.quaternary};
 `;
 

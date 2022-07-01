@@ -18,5 +18,8 @@
 |
 */
 
-import 'App/modules/auth/routes'
-import 'App/modules/user/routes'
+import 'App/modules/auth/routes';
+import 'App/modules/user/routes';
+import 'App/modules/place/routes';
+import 'App/modules/flight/routes';
+import 'App/modules/reservation/routes';

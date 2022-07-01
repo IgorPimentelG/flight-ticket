@@ -1,31 +1,45 @@
-import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { DateTime } from 'luxon';
+import { BaseModel, column, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm';
+import Place from './Place';
 
 export default class Flight extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+	public id: number;
 
   @column()
-  public number: string
+  public code: string;
 
   @column()
-  public price: number
+  public price: number;
 
   @column()
-  public totalAvailable: number
+  public totalAvailable: number;
 
   @column()
-  public origin_id: number
+  public originId: number;
 
   @column()
-  public destiny_id: number
+  public destinyId: number;
+
+  @hasOne(() => Place, {
+  	foreignKey: 'originId'
+  })
+  public origin: HasOne<typeof Place>;
+
+  @hasOne(() => Place, {
+  	foreignKey: 'destinyId'
+  })
+  public destiny: HasOne<typeof Place>;
 
   @column.dateTime()
-  public departure: DateTime
+  public departureAt: DateTime;
+
+  @column.dateTime()
+  public canceledAt: DateTime;
 
   @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  public createdAt: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  public updatedAt: DateTime;
 }

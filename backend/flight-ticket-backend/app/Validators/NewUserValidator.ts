@@ -1,10 +1,10 @@
-import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator';
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 
 export default class NewUserValidator {
-  constructor(protected ctx: HttpContextContract) {}
+	constructor(protected ctx: HttpContextContract) {}
 
-  /*
+	/*
    * Define schema to validate the "shape", "type", "formatting" and "integrity" of data.
    *
    * For example:
@@ -23,20 +23,24 @@ export default class NewUserValidator {
    *     ])
    *    ```
    */
-  public schema = schema.create({
-    email: schema.string({}, [
-      rules.required(),
-      rules.email(),
-    ]),
-    password: schema.string({}, [
-      rules.required(),
-      rules.trim(),
-      rules.minLength(8),
-      rules.maxLength(20),
-    ])
-  })
+	public schema = schema.create({
+		name: schema.string({}, [
+			rules.required(),
+			rules.minLength(3)
+		]),
+		email: schema.string({}, [
+			rules.required(),
+			rules.email(),
+		]),
+		password: schema.string({}, [
+			rules.required(),
+			rules.trim(),
+			rules.minLength(8),
+			rules.maxLength(20),
+		])
+	});
 
-  /**
+	/**
    * Custom messages for validation failures. You can make use of dot notation `(.)`
    * for targeting nested fields and array expressions `(*)` for targeting all
    * children of an array. For example:
@@ -47,5 +51,5 @@ export default class NewUserValidator {
    * }
    *
    */
-  public messages: CustomMessages = {}
+	public messages: CustomMessages = {};
 }
